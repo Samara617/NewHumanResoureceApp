@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_script_client">
+    <sys_script_client action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <applies_extended>false</applies_extended>
+        <condition/>
+        <description/>
+        <field/>
+        <global>true</global>
+        <isolate_script>true</isolate_script>
+        <messages/>
+        <name>Autopop Location</name>
+        <order/>
+        <script><![CDATA[function onLoad() {
+   //Type appropriate comment here, and begin script below
+   
+
+var getLocation = Class.create();
+getLocation.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
+	locationDetail: function() {
+		
+		var location = '';
+		var userid = this.getParameter('sys_user');
+
+		var gr = new GlideRecord('sys_user');
+		gr.addQuery('sys_user', userid);
+		gr.query();
+
+		if (gr.next()) {
+			location = gr.getValue('location');
+		}
+
+		return location;
+	},
+	type: 'getLocation'
+});
+}]]></script>
+        <sys_class_name>sys_script_client</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-12-30 06:28:56</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>fa3266af2f9fb55052232e5df699b621</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Autopop Location</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Human Resource" source="x_1022175_hr">1980ab752f87f11052232e5df699b6c1</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Human Resource">1980ab752f87f11052232e5df699b6c1</sys_scope>
+        <sys_update_name>sys_script_client_fa3266af2f9fb55052232e5df699b621</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-12-30 06:28:56</sys_updated_on>
+        <table>x_1022175_hr_x_1022175_hr</table>
+        <type>onLoad</type>
+        <ui_type>0</ui_type>
+        <view/>
+    </sys_script_client>
+</record_update>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_script_client">
+    <sys_script_client action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <applies_extended>false</applies_extended>
+        <condition/>
+        <description>Hide Variable section when source is empty</description>
+        <field/>
+        <global>true</global>
+        <isolate_script>true</isolate_script>
+        <messages/>
+        <name>Hide Variable section when source is emp</name>
+        <order/>
+        <script><![CDATA[function onLoad() {
+    //hide variable section if source is empty
+    if (g_form.getValue('source') == '') {
+        g_form.setSectionDisplay('variables', false);
+    } else {
+        g_form.setSectionDisplay('variables', true);
+    }
+}]]></script>
+        <sys_class_name>sys_script_client</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-12-17 01:59:00</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>e2356e972f07351052232e5df699b67a</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Hide Variable section when source is emp</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Human Resource" source="x_1022175_hr">1980ab752f87f11052232e5df699b6c1</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Human Resource">1980ab752f87f11052232e5df699b6c1</sys_scope>
+        <sys_update_name>sys_script_client_e2356e972f07351052232e5df699b67a</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-12-17 01:59:00</sys_updated_on>
+        <table>x_1022175_hr_x_1022175_hr</table>
+        <type>onLoad</type>
+        <ui_type>0</ui_type>
+        <view/>
+    </sys_script_client>
+</record_update>

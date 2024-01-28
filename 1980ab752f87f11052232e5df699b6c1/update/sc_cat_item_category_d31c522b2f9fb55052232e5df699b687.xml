@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sc_cat_item_category">
+    <sc_cat_item_category action="INSERT_OR_UPDATE">
+        <sc_cat_item display_value="Confidential Inquiry">878868e32f97b55052232e5df699b6ac</sc_cat_item>
+        <sc_category display_value="Human Resources">120cda2b2f9fb55052232e5df699b671</sc_category>
+        <sys_class_name>sc_cat_item_category</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-12-30 06:01:24</sys_created_on>
+        <sys_id>d31c522b2f9fb55052232e5df699b687</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Human Resources.Confidential Inquiry</sys_name>
+        <sys_package display_value="Human Resource" source="x_1022175_hr">1980ab752f87f11052232e5df699b6c1</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Human Resource">1980ab752f87f11052232e5df699b6c1</sys_scope>
+        <sys_update_name>sc_cat_item_category_d31c522b2f9fb55052232e5df699b687</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-12-30 06:01:24</sys_updated_on>
+    </sc_cat_item_category>
+</record_update>
