@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sc_cat_item_category">
     <sc_cat_item_category action="INSERT_OR_UPDATE">
-        <sc_cat_item display_value="HR General Inquiry">0fb790c32f93355052232e5df699b660</sc_cat_item>
+        <sc_cat_item display_value="">0fb790c32f93355052232e5df699b660</sc_cat_item>
         <sc_category display_value="Human Resource">ae9858c32f93355052232e5df699b6ce</sc_category>
         <sys_class_name>sc_cat_item_category</sys_class_name>
         <sys_created_by>admin</sys_created_by>

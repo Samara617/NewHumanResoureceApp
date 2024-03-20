@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_instance">
+    <sp_instance action="DELETE">
+        <active>true</active>
+        <class_name/>
+        <color>default</color>
+        <css/>
+        <glyph/>
+        <id/>
+        <order>1</order>
+        <roles/>
+        <short_description/>
+        <size>md</size>
+        <sp_column display_value="1">e7f7224b2f80ca1052232e5df699b60b</sp_column>
+        <sp_widget display_value="Quick Links">dae53627530030101865ddeeff7b12be</sp_widget>
+        <sys_class_name>sp_instance</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-02-03 22:51:19</sys_created_on>
+        <sys_id>e6e21a032f40ca1052232e5df699b6ba</sys_id>
+        <sys_mod_count>15</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="Human Resource" source="x_1022175_hr">1980ab752f87f11052232e5df699b6c1</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Human Resource">1980ab752f87f11052232e5df699b6c1</sys_scope>
+        <sys_update_name>sp_instance_e6e21a032f40ca1052232e5df699b6ba</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-02-04 00:24:52</sys_updated_on>
+        <title/>
+        <url/>
+        <widget_parameters><![CDATA[{
+	"title": {
+		"value": "",
+		"displayValue": ""
+	},
+	"card_type": {
+		"value": "Thumbnail",
+		"displayValue": "Thumbnail"
+	},
+	"card_size": {
+		"value": "Medium",
+		"displayValue": "Medium"
+	},
+	"text_alignment": {
+		"value": "Left",
+		"displayValue": "Left"
+	},
+	"show_icon": {
+		"value": "true",
+		"displayValue": "true"
+	},
+	"show_background": {
+		"value": "true",
+		"displayValue": "true"
+	},
+	"show_description": {
+		"value": "true",
+		"displayValue": "true"
+	},
+	"background_color": {
+		"value": "Hexcode",
+		"displayValue": "Hexcode"
+	},
+	"background_hexcode": {
+		"value": "",
+		"displayValue": ""
+	},
+	"icon_background_color": {
+		"value": "false",
+		"displayValue": "false"
+	},
+	"icon_background_hexcode": {
+		"value": "",
+		"displayValue": ""
+	},
+	"show_text_overlay": {
+		"value": "true",
+		"displayValue": "true"
+	},
+	"text_overlay_hexcode": {
+		"value": "",
+		"displayValue": ""
+	},
+	"text_color": {
+		"value": "false",
+		"displayValue": "false"
+	},
+	"text_color_hexcode": {
+		"value": "",
+		"displayValue": ""
+	},
+	"quick_links": {
+		"value": "9b729365e71130104cda66ef11e8a9a7,4e116048e76530104cda66ef11e8a9bc",
+		"displayValue": "Password Reset, Request Standing Desk"
+	},
+	"load_config": {
+		"value": "async",
+		"displayValue": "async"
+	},
+	"show_empty_state": {
+		"value": "false",
+		"displayValue": "false"
+	}
+}]]></widget_parameters>
+    </sp_instance>
+    <sys_translated_text action="DELETE" query="documentkey=e6e21a032f40ca1052232e5df699b6ba"/>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Human Resource">1980ab752f87f11052232e5df699b6c1</application>
+        <file_path/>
+        <instance_id>60cecf3adbc8081452dd2f17d496199a</instance_id>
+        <instance_name>dev93894</instance_name>
+        <name>sp_instance_e6e21a032f40ca1052232e5df699b6ba</name>
+        <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="sp_instance"&gt;&lt;sp_instance action="INSERT_OR_UPDATE"&gt;&lt;active&gt;true&lt;/active&gt;&lt;class_name/&gt;&lt;color&gt;default&lt;/color&gt;&lt;css/&gt;&lt;glyph/&gt;&lt;id/&gt;&lt;order&gt;1&lt;/order&gt;&lt;roles/&gt;&lt;short_description/&gt;&lt;size&gt;md&lt;/size&gt;&lt;sp_column display_value="1"&gt;e7f7224b2f80ca1052232e5df699b60b&lt;/sp_column&gt;&lt;sp_widget display_value="Quick Links"&gt;dae53627530030101865ddeeff7b12be&lt;/sp_widget&gt;&lt;sys_class_name&gt;sp_instance&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2024-02-03 22:51:19&lt;/sys_created_on&gt;&lt;sys_id&gt;e6e21a032f40ca1052232e5df699b6ba&lt;/sys_id&gt;&lt;sys_mod_count&gt;15&lt;/sys_mod_count&gt;&lt;sys_name/&gt;&lt;sys_package display_value="Human Resource" source="x_1022175_hr"&gt;1980ab752f87f11052232e5df699b6c1&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_scope display_value="Human Resource"&gt;1980ab752f87f11052232e5df699b6c1&lt;/sys_scope&gt;&lt;sys_update_name&gt;sp_instance_e6e21a032f40ca1052232e5df699b6ba&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2024-02-04 00:24:52&lt;/sys_updated_on&gt;&lt;title/&gt;&lt;url/&gt;&lt;widget_parameters&gt;&lt;![CDATA[{
+	"title": {
+		"value": "",
+		"displayValue": ""
+	},
+	"card_type": {
+		"value": "Thumbnail",
+		"displayValue": "Thumbnail"
+	},
+	"card_size": {
+		"value": "Medium",
+		"displayValue": "Medium"
+	},
+	"text_alignment": {
+		"value": "Left",
+		"displayValue": "Left"
+	},
+	"show_icon": {
+		"value": "true",
+		"displayValue": "true"
+	},
+	"show_background": {
+		"value": "true",
+		"displayValue": "true"
+	},
+	"show_description": {
+		"value": "true",
+		"displayValue": "true"
+	},
+	"background_color": {
+		"value": "Hexcode",
+		"displayValue": "Hexcode"
+	},
+	"background_hexcode": {
+		"value": "",
+		"displayValue": ""
+	},
+	"icon_background_color": {
+		"value": "false",
+		"displayValue": "false"
+	},
+	"icon_background_hexcode": {
+		"value": "",
+		"displayValue": ""
+	},
+	"show_text_overlay": {
+		"value": "true",
+		"displayValue": "true"
+	},
+	"text_overlay_hexcode": {
+		"value": "",
+		"displayValue": ""
+	},
+	"text_color": {
+		"value": "false",
+		"displayValue": "false"
+	},
+	"text_color_hexcode": {
+		"value": "",
+		"displayValue": ""
+	},
+	"quick_links": {
+		"value": "9b729365e71130104cda66ef11e8a9a7,4e116048e76530104cda66ef11e8a9bc",
+		"displayValue": "Password Reset, Request Standing Desk"
+	},
+	"load_config": {
+		"value": "async",
+		"displayValue": "async"
+	},
+	"show_empty_state": {
+		"value": "false",
+		"displayValue": "false"
+	}
+}]]&gt;&lt;/widget_parameters&gt;&lt;/sp_instance&gt;&lt;sys_translated_text action="delete_multiple" query="documentkey=e6e21a032f40ca1052232e5df699b6ba"/&gt;&lt;/record_update&gt;</payload>
+        <payload_hash>-1618461289</payload_hash>
+        <record_name/>
+        <reverted_from/>
+        <source>f7dfe2712fc8461052232e5df699b667</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-02-04 00:24:52</sys_created_on>
+        <sys_id>f858a64b2f80ca1052232e5df699b6a5</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>18d7180f3ed0000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-02-04 00:24:52</sys_updated_on>
+        <type>Instance</type>
+        <update_guid>f058a64bdf80ca108b58ded2ac9250a5</update_guid>
+        <update_guid_history>f058a64bdf80ca108b58ded2ac9250a5:-1618461289,a8b76a0b8180ca1034a1e7ad75e7b5f6:2061669565,ce47620b7180ca1019afdb212ccc7f96:-1666711383,4de62ac7cd80ca10bdd052c74e8c0cab:-471643862,5ad6e6c7b180ca101d97e3c1a13d48b7:723423659,4356ae874280ca10494c7ac4a8401a4f:-471643862,4d566e87eb80ca106b76fd23bb2548ca:-1666711383,faf566874280ca103d4c4202f8e8a4d4:-471643862,d8e5e2875b80ca1078920c3af479c2ee:-1666711383,abd5e2870e80ca10bf2921ec72447342:-471643862,d2f4ee076a80ca108a796a06498481eb:-1666711383,7bc4ea073180ca10b3b209ab1a3676b6:-471643862,2aa42a076980ca10b300b3bf827751fe:-1666711383,bae39a433c40ca10d45e5dd9e15adac1:-471643862,d9c35603ae40ca10e8c0fcabe5abc6ab:1263465322,a2e21a030f40ca10236b5065be0b8ebc:-7414187</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="">efd8ea4b2f80ca1052232e5df699b630</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-02-04 00:27:14</sys_created_on>
+        <sys_db_object display_value="" name="sp_instance">sp_instance</sys_db_object>
+        <sys_id>23c2070c96f64d8ab044968d096738d1</sys_id>
+        <sys_metadata>e6e21a032f40ca1052232e5df699b6ba</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="Human Resource" source="x_1022175_hr">1980ab752f87f11052232e5df699b6c1</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Human Resource">1980ab752f87f11052232e5df699b6c1</sys_scope>
+        <sys_scope_delete display_value="">17665fce484249118462a12012e01369</sys_scope_delete>
+        <sys_update_name>sp_instance_e6e21a032f40ca1052232e5df699b6ba</sys_update_name>
+        <sys_update_version display_value="sp_instance_e6e21a032f40ca1052232e5df699b6ba">f858a64b2f80ca1052232e5df699b6a5</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-02-04 00:27:14</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

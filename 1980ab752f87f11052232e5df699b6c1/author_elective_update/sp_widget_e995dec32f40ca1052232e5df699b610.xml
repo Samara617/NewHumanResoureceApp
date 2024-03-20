@@ -1,0 +1,1147 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="DELETE">
+        <category>custom</category>
+        <client_script><![CDATA[api.controller = function ($scope) {
+	var CONST = {
+		'BORDER_COLOR': 'border-color',
+		'TOPIC_SELECTOR': '.popular-topic-body-container',
+		'FN_RESIZE': 'resizePopularTopicWidget',
+		'CONTAINER': '.container',
+		'SMALL': 'small',
+		'NO_ICON': 'no-icon',
+		'POPULAR_TOPIC_BODY': '.popular-topic-body',
+		'IE_PREFIX': 'Trident/',
+		'IE': 'ie',
+		'MARGIN': 'mr-0',
+		'H5_SELECTOR': '.popular-topic-caption .popular-topic-title',
+		'FONT_SIZE': 'font-size',
+		'FIXED_COUNT': 4,
+		'LIMIT': 12
+	};
+	var c = this;
+	$scope.isLoading = false;
+	var data = c.data;
+	$scope.isFixed = false;
+	var isIE = window.navigator.userAgent.indexOf(CONST.IE_PREFIX) !== -1;
+
+	/**
+	* Return the theme class
+	* @return  {string} themeClass - Theme class
+	*
+	*/
+	$scope.getClass = function () {
+		var isHex = data && data.isHex || false;
+		return !isHex ? getThemeClass(data.borderColor) : "";
+	};
+
+	/**
+	* Return the style object
+	* @return  {object} style - Style object
+	*
+	*/
+	$scope.getStyle = function () {
+		var style = {};
+		style[CONST.BORDER_COLOR] = data && data.hexcode;
+		var isHex = data && data.isHex || false;
+		return isHex ? style : {};
+	};
+
+	var registered = false;
+	var resizeEvents = $._data(window, "events").resize;
+	if (resizeEvents) {
+		resizeEvents.forEach(function (callback) {
+			var handler = callback.handler;
+			var name = handler.name;
+			if (name === CONST.FN_RESIZE) {
+				registered = true;
+			}
+		});
+	}
+
+	if (!registered) {
+		$(window).resize(resizePopularTopicWidget);
+	}
+
+	$scope.$evalAsync(resizePopularTopicWidget);
+	$scope.$evalAsync(topicTooltip);
+
+	/**
+	* Return theme class name based on option
+	* @return  {string} theme-class - theme class name
+	*
+	*/
+	function getThemeClass(background) {
+		var THEME = {
+			'border-primary': 'primary-color',
+			'border-secondary': 'secondary-color',
+			'border-tertiary': 'tertiary-color'
+		};
+		var result = 'tertiary-color';
+		if (background in THEME)
+			result = THEME[background];
+
+		return result;
+	}
+
+	/**
+	* Resize the topic column based on the width
+	*/
+	function resizePopularTopicWidget() {
+		var topicCont = $(CONST.TOPIC_SELECTOR);
+		if (isIE) {
+			resizeWidgetIE(topicCont);
+		}
+		topicTooltip();
+	}
+
+	/**
+	 * IE responsive support
+	 */
+	function resizeWidgetIE(topicCont) {
+		var MIN_TOPIC_WIDTH = 150;
+		var MAX_TOPIC_WIDTH = 250;
+		var PADDING = 16;
+		var MIN_BREAK_POINT = 330;
+		var MOBILE_WIDTH = 400;
+		$(CONST.TOPIC_SELECTOR).addClass(CONST.IE);
+		topicCont.each(function (i, container) {
+			var availablePanelWidth = getPanelWidth(container);
+			var isSmall = $(container).hasClass(CONST.SMALL);
+			var noIcon = $(container).hasClass(CONST.NO_ICON);
+			var limit = CONST.LIMIT;
+			var numberOfTopic = Math.min(Math.round(availablePanelWidth / MIN_TOPIC_WIDTH), limit);
+			numberOfTopic = calcTopicCount(numberOfTopic, MIN_TOPIC_WIDTH, availablePanelWidth, PADDING, true);
+			isSmall = true;
+			if (availablePanelWidth <= MOBILE_WIDTH) {
+				numberOfTopic = 2;
+				if ((isSmall && !noIcon) || (availablePanelWidth <= MIN_BREAK_POINT)) {
+					numberOfTopic = 1;
+				}
+			}
+			var topicWidth = Math.floor((availablePanelWidth - ((numberOfTopic) * PADDING) - 1) / numberOfTopic);
+			topicWidth = (numberOfTopic === 1 && isSmall && !noIcon) ? availablePanelWidth : Math.min(topicWidth, MAX_TOPIC_WIDTH);
+			var topicList = $(CONST.POPULAR_TOPIC_BODY, container);
+			topicList.each(function (j, topic) {
+				$(topic).css('width', topicWidth);
+				if (isSmall && !noIcon) {
+					$(topic).css('max-width', 'inherit');
+				}
+			});
+		});
+	}
+
+	/**
+	 * Calculating topic count to be shown
+	 */
+	function calcTopicCount(topicCount, minTopicWidth, maxWidth, padWidth, isIE) {
+		var calcWidth = calculateWidth(minTopicWidth, padWidth, topicCount, isIE);
+		while ((topicCount > 0) && (calcWidth > maxWidth)) {
+			topicCount--;
+			calcWidth = calculateWidth(minTopicWidth, padWidth, topicCount, isIE);
+		}
+		return topicCount;
+	}
+
+	/**
+	 * Calacuate width based on available space
+	 */
+	function calculateWidth(minTopicWidth, padWidth, topicCount, isIE) {
+		var calcWidth = 0;
+		var gridGapCount = topicCount - 1;
+		if (isIE) {
+			gridGapCount = topicCount;
+		}
+		calcWidth = (minTopicWidth * topicCount) + (gridGapCount * padWidth);
+		return calcWidth;
+	}
+
+	/**
+	 * Get panel space of widget
+	 */
+	function getPanelWidth(topicPanel) {
+		var panelWidth = $(topicPanel).width();
+		var parentWidth = $(topicPanel).parents(CONST.CONTAINER).width() || panelWidth;
+		return Math.min(parentWidth, panelWidth);
+	}
+
+	/**
+	 * Checking ellipsis applied to topic names
+	 */
+	function checkEllipsis(tooltip) {
+		if (isIE) {
+			return tooltip.scrollWidth > $(tooltip).parent().width();
+		}
+		var fontSize = parseFloat($(tooltip).css(CONST.FONT_SIZE));
+		return (($(tooltip).height() + fontSize / 2) < tooltip.scrollHeight);
+	}
+
+	/**
+	 * Applying tooltip to ellipsis elements
+	 */
+	function topicTooltip() {
+		var topics = $(CONST.H5_SELECTOR);
+		topics.tooltip('enable');
+		topics.each(function (i, tooltip) {
+			if (!checkEllipsis(tooltip)) {
+				$(tooltip).tooltip('disable');
+			}
+		});
+	}
+
+    c.asyncGet = function() {
+        $scope.isLoading = true;
+        c.data.action = "loadData";
+        c.server.update().then(function(response) {
+            fetchPopularTopicsData();
+        });
+    }
+    var fetchPopularTopicsData = function() {
+        $scope.isLoading = false;
+        $scope.isFixed = (data.popularTopics && (data.popularTopics.length < CONST.FIXED_COUNT)) || false;
+        setTimeout(resizePopularTopicWidget);
+        setTimeout(topicTooltip);
+    };
+
+    var load_config = c.data.load_config;
+    if (load_config === "async")
+        setTimeout(c.asyncGet);
+    else
+        fetchPopularTopicsData();
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css>/*** Variables declaration **/&#13;
+&#13;
+$border-radius: 6px;&#13;
+$shadow: 0px 2px 10px rgba(23, 40, 52, 0.08);&#13;
+$normal-img-size: 56px;&#13;
+$small-img-size: 32px;&#13;
+$rm: 10px;&#13;
+$text-primary: #181a1f !default;&#13;
+$color-sp-separator: #eaeaea !default;&#13;
+$headings-font-weight: 600 !default;&#13;
+$border-primary: #8790a1 !default;&#13;
+$border-secondary: #acb2be !default;&#13;
+$border-tertiary: #dadde2 !default;&#13;
+$sp-panel-box-shadow: 0 4px 8px 0 rgba(23, 40, 52, 0.08) !default;&#13;
+&#13;
+.popular-topic-panel * {&#13;
+	box-sizing: border-box;&#13;
+	margin: 0;&#13;
+	padding: 0;&#13;
+	p {&#13;
+		margin: 0 0 1.1rem;&#13;
+	}&#13;
+}&#13;
+&#13;
+.popular-topic-panel {&#13;
+	background-color: $color-lightest;&#13;
+	border-radius: $border-radius-large;&#13;
+	box-shadow: $shadow;&#13;
+	margin-bottom: $rm * 1.6;&#13;
+	color: $text-primary;&#13;
+	border-color: transparent;&#13;
+}&#13;
+&#13;
+.popular-topic-panel.small {&#13;
+	font-size: $rm * 1.6;&#13;
+}&#13;
+&#13;
+.popular-topic-panel &gt; .popular-topic-heading {&#13;
+	word-wrap: break-word;&#13;
+	padding: $rm * 2.4;&#13;
+	color: $text-primary;&#13;
+	border-top-right-radius: $border-radius;&#13;
+	border-top-left-radius: $border-radius;&#13;
+	border-bottom: 1px solid $color-sp-separator;&#13;
+	background: none;&#13;
+}&#13;
+&#13;
+.popular-topic-body-container {&#13;
+	padding: 1.6 * $rm 2.4 * $rm;&#13;
+	display: grid;&#13;
+	grid-auto-rows: 1fr;&#13;
+	grid-template-columns: 1fr;&#13;
+	grid-gap: 1.6 * $rm;&#13;
+}&#13;
+.popular-topic-empty-state {&#13;
+	height: 15 * $rm;&#13;
+	display: flex;&#13;
+	justify-content: center;&#13;
+	align-items: center;&#13;
+	padding: 2.4rem;&#13;
+	text-align: center;&#13;
+	.popular-topic-empty-text{&#13;
+		font-size: $font-size-base;&#13;
+		color:$text-secondary;&#13;
+	}&#13;
+}&#13;
+.popular-topic-body {&#13;
+	margin-bottom: 0;&#13;
+	background-color: $color-lightest;&#13;
+	border-width: 1px;&#13;
+	border-style: solid;&#13;
+	border-radius: $border-radius-base;&#13;
+}&#13;
+&#13;
+.popular-topic-body:hover {&#13;
+	box-shadow: $sp-panel-box-shadow;&#13;
+}&#13;
+&#13;
+.popular-topic-body &gt; .popular-topic-link {&#13;
+	text-decoration: none;&#13;
+	background-color: transparent;&#13;
+	cursor: pointer;&#13;
+	color: $text-primary;&#13;
+	display: block;&#13;
+	padding: 1em;&#13;
+	height: 100%;&#13;
+	border-radius: $border-radius-base;&#13;
+}&#13;
+&#13;
+.popular-topic-body-container.no-icon:not(.small) .popular-topic-link {&#13;
+	padding-top: $rm * 5.2;&#13;
+	padding-bottom: $rm * 5.2;&#13;
+}&#13;
+&#13;
+.popular-topic-body-container.small .popular-topic-link {&#13;
+	display: flex;&#13;
+	align-items: center;&#13;
+	height: 100%;&#13;
+}&#13;
+&#13;
+.popular-topic-body img {&#13;
+	display: block;&#13;
+	max-width: 100%;&#13;
+	margin-left: auto;&#13;
+	margin-right: auto;&#13;
+	border: 0;&#13;
+	width: $normal-img-size;&#13;
+	height: $normal-img-size;&#13;
+}&#13;
+&#13;
+.popular-topic-body-container.small img {&#13;
+	width: $small-img-size;&#13;
+	height: $small-img-size;&#13;
+}&#13;
+&#13;
+.popular-topic-body .popular-topic-caption {&#13;
+	font-size: 1em;&#13;
+	text-align: center;&#13;
+}&#13;
+&#13;
+.popular-topic-caption .popular-topic-title {&#13;
+	word-break: break-word;&#13;
+	overflow: hidden;&#13;
+	text-overflow: ellipsis;&#13;
+	display: -webkit-box;&#13;
+	-webkit-line-clamp: 2;&#13;
+	-webkit-box-orient: vertical;&#13;
+	color: $text-primary;&#13;
+	font-weight: $headings-font-weight;&#13;
+}&#13;
+&#13;
+.popular-topic-caption .tooltip-inner {&#13;
+	padding: 0.3rem 0.8rem;&#13;
+}&#13;
+&#13;
+.popular-topic-caption .tooltip-arrow {&#13;
+	bottom: -5px;&#13;
+}&#13;
+&#13;
+.popular-topic-body-container:not(.small) .popular-topic-caption {&#13;
+	padding-top: $rm * 1.6;&#13;
+	margin-bottom: $rm * 0.5;&#13;
+	.popular-topic-title {&#13;
+		font-size: $rm * 1.6;&#13;
+	}&#13;
+}&#13;
+&#13;
+.popular-topic-body-container.small .popular-topic-caption {&#13;
+	width: calc(100% - $small-img-size);&#13;
+	text-align: left;&#13;
+	display: flex;&#13;
+	align-items: center;&#13;
+	height: 100%;&#13;
+	padding-left: 1em;&#13;
+	margin-left: 0;&#13;
+}&#13;
+&#13;
+.popular-topic-body-container.no-icon .popular-topic-caption {&#13;
+	width: 100%;&#13;
+	margin: 0;&#13;
+	padding: 0;&#13;
+	display: flex;&#13;
+	align-items: center;&#13;
+	justify-content: center;&#13;
+	height: 100%;&#13;
+	text-align: center;&#13;
+	max-width: none;&#13;
+}&#13;
+&#13;
+.popular-topic-body-container.no-icon img {&#13;
+	display: none;&#13;
+}&#13;
+&#13;
+.primary-color {&#13;
+	border-color: $border-primary;&#13;
+}&#13;
+&#13;
+.secondary-color {&#13;
+	border-color: $border-secondary;&#13;
+}&#13;
+&#13;
+.tertiary-color {&#13;
+	border-color: $border-tertiary;&#13;
+}&#13;
+&#13;
+@media screen and (min-width: 330px) {&#13;
+	.popular-topic-body-container {&#13;
+		grid-template-columns: repeat(2, minmax($rm * 13, 1fr));&#13;
+		grid-gap: $rm * 1.6 $rm;&#13;
+	}&#13;
+}&#13;
+&#13;
+@media screen and (max-width: 430px) {&#13;
+	.popular-topic-body-container.small:not(.no-icon) {&#13;
+		grid-template-columns: 1fr;&#13;
+	}&#13;
+	.popular-topic-body-container {&#13;
+		padding: 1.6 * $rm;&#13;
+	}&#13;
+}&#13;
+&#13;
+@media screen and (min-width: 430px) {&#13;
+	.popular-topic-body {&#13;
+		max-width: $rm * 25;&#13;
+	}&#13;
+}&#13;
+&#13;
+@media screen and (min-width: 480px) {&#13;
+	.popular-topic-body-container:not(.fixed) {&#13;
+		grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));&#13;
+		grid-gap: 1.6 * $rm;&#13;
+	}&#13;
+	.popular-topic-body-container.fixed {&#13;
+		grid-template-columns: repeat(auto-fill, minmax($rm * 15, 1fr));&#13;
+		grid-gap: 1.6 * $rm;&#13;
+	}&#13;
+}&#13;
+&#13;
+.ie.popular-topic-body-container {&#13;
+	display: flex;&#13;
+	flex-wrap: wrap;&#13;
+	padding-bottom: 0;&#13;
+	padding-right: 0.8 * $rm;&#13;
+}&#13;
+&#13;
+.ie .popular-topic-body {&#13;
+	margin-right: $rm * 1.6;&#13;
+	margin-bottom: $rm * 1.6;&#13;
+	min-width: $rm * 15;&#13;
+	max-width: $rm * 25;&#13;
+}&#13;
+&#13;
+.ie .popular-topic-title {&#13;
+	white-space: nowrap;&#13;
+}&#13;
+</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id/>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {
+    controller.keydownAction = function(event) {
+        if (event.keyCode === 13 || event.keyCode === 32) {
+            event.preventDefault();
+            event.stopPropagation();
+            event.target.click();
+        }
+    };
+}]]></link>
+        <name>Copy of Popular Topics</name>
+        <option_schema>[{"hint":"Title name of the widget","name":"widget_title","section":"Presentation","default_value":"Popular topics","label":"Title","type":"string"},{"hint":"Number of topics to be shown","name":"topic_limit","section":"Presentation","default_value":"8","label":"Number of topics","type":"choice","choices":[{"label":"4","value":"4"},{"label":"6","value":"6"},{"label":"8","value":"8"},{"label":"12","value":"12"}]},{"hint":"Display size (Normal / Small)","name":"display_size","section":"Presentation","default_value":"Normal","label":"Display size","type":"choice","choices":[{"label":"Normal","value":"Normal"},{"label":"Small","value":"Small"}]},{"hint":"Border color of popular topic","name":"border_color","section":"Presentation","default_value":"Border-tertiary","label":"Border color","type":"choice","choices":[{"label":"Border-primary","value":"Border-primary"},{"label":"Border-secondary","value":"Border-secondary"},{"label":"Border-tertiary","value":"Border-tertiary"},{"label":"Hexcode","value":"Hexcode"}]},{"hint":"Hex code of border color","name":"hexcode","section":"Presentation","default_value":"#FFFFFF","label":"Hexcode","type":"string"},{"hint":"Icon to be shown for popular topic","name":"icon","section":"Presentation","default_value":"true","label":"Show topic icon","type":"boolean"},{"name":"load_config","section":"other","default_value":"async","label":"Load configuration","type":"choice","choices":[{"label":"Synchronous","value":"sync"},{"label":"Asynchronous","value":"async"}]},{"hint":"Shows empty state if the widget content is empty.","name":"show_empty_state","section":"other","default_value":"false","label":"Show empty state","type":"boolean"}]</option_schema>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function () {
+	data.load_config = options.load_config;
+	if(data.load_config === "async" && !input)
+		return;
+	var limit = options.topic_limit;
+	var taxonomy = $sp.getTaxonomies();
+	if (!taxonomy || taxonomy.length === 0) {
+		return;
+	}
+	
+	var session = gs.getSession();
+	var popularTopicsDataKey = 'sn_ex_sp_popular_topics_data' + session.getLanguage() + gs.getUserID();
+	var popularTopicsData = JSON.parse(session.getClientData(popularTopicsDataKey));
+	if (popularTopicsData === null || popularTopicsData.length != limit) {
+		data.popularTopics = new PopularTopicsUtil().getPopularTopics(taxonomy, limit, false);
+		session.putClientData(popularTopicsDataKey, JSON.stringify(data.popularTopics));
+	} else {
+		data.popularTopics = popularTopicsData;
+	}
+	data.options = options;
+	populateOptions(data);
+})();
+
+/**
+ * Read and initialize the options
+ * @param {object} data - Data object
+ *
+ */
+function populateOptions(data) {
+	var CONST = {
+		'HEX': 'hexcode',
+		'NORMAL': 'normal',
+		'SMALL': 'small',
+		'TRUE': 'true',
+		'FALSE': 'false',
+		'DEFAULT_COLOR': '#FFFFFF',
+		'DEFAULT_BORDER_OPTION': 'border-tertiary',
+		'REGEX': /^#([0-9A-F]{3}){1,2}$/i
+	};
+	var option = data.options;
+	data.isNormal = (option.display_size.toLowerCase() === CONST.NORMAL);
+	data.isSmall = (option.display_size.toLowerCase() === CONST.SMALL);
+	data.borderColor = option.border_color.toLowerCase();
+	data.icon = option.icon.toLowerCase() === CONST.TRUE;
+	data.isHex = (data.borderColor === CONST.HEX);
+	data.hexcode = option.hexcode;
+	var title = [option.widget_title];
+	data.widgetTitle = gs.getMessage(title);
+
+	if (data.isHex) {
+		if (!CONST.REGEX.test(option.hexcode)) {
+			data.borderColor = CONST.DEFAULT_BORDER_OPTION;
+			data.isHex = false;
+		}
+	}
+}
+]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>seanb</sys_created_by>
+        <sys_created_on>2024-02-03 23:03:00</sys_created_on>
+        <sys_id>e995dec32f40ca1052232e5df699b610</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Copy of Popular Topics</sys_name>
+        <sys_package display_value="Human Resource" source="x_1022175_hr">1980ab752f87f11052232e5df699b6c1</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Human Resource">1980ab752f87f11052232e5df699b6c1</sys_scope>
+        <sys_update_name>sp_widget_e995dec32f40ca1052232e5df699b610</sys_update_name>
+        <sys_updated_by>seanb</sys_updated_by>
+        <sys_updated_on>2024-02-03 23:03:00</sys_updated_on>
+        <template><![CDATA[<div class="popular-topic-panel panel panel-default panel-wrapper b" ng-if="(data.popularTopics && data.popularTopics.length > 0) || data.options.show_empty_state === 'true'">
+	<div class="popular-topic-heading panel-heading b-b">
+		<h3 class="panel-title">{{data.widgetTitle}}</h3>
+	</div>
+	<div class="popular-topic-panel-body">
+		<div class="popular-topic-empty-state" ng-if="data.options.show_empty_state === 'true' && (!data.popularTopics || data.popularTopics.length === 0)">
+			<p class="popular-topic-empty-text">
+				${We don't have any popular topics to show you yet.}
+			</p>
+		</div>
+		<div class="popular-topic-body-container"
+			ng-class="{'small': data.isSmall, 'no-icon': !data.icon, 'fixed': isFixed }" 
+			ng-if="data.popularTopics && data.popularTopics.length > 0">
+			
+			<div class="popular-topic-body" ng-class="getClass()" ng-style="getStyle()"
+				ng-repeat="topic in data.popularTopics">
+				<a class="popular-topic-link" data-ng-attr-aria-label="{{data.widgetTitle}}, {{topic.topic}}"
+					ng-href="{{topic.topicUrl}}" ng-keydown="c.keydownAction($event)">
+					<img ng-src="{{topic.icon}}" alt="" />
+					<div class="popular-topic-caption">
+						<span class = "popular-topic-title" data-toggle="tooltip" title="{{topic.topic}}">
+							{{topic.topic}}
+						</span>
+					</div>
+				</a>
+			</div>
+		</div>
+	</div>
+</div>]]></template>
+    </sp_widget>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Human Resource">1980ab752f87f11052232e5df699b6c1</application>
+        <file_path/>
+        <instance_id>60cecf3adbc8081452dd2f17d496199a</instance_id>
+        <instance_name>dev93894</instance_name>
+        <name>sp_widget_e995dec32f40ca1052232e5df699b610</name>
+        <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="sp_widget"&gt;&lt;sp_widget action="INSERT_OR_UPDATE"&gt;&lt;category&gt;custom&lt;/category&gt;&lt;client_script&gt;&lt;![CDATA[api.controller = function ($scope) {
+	var CONST = {
+		'BORDER_COLOR': 'border-color',
+		'TOPIC_SELECTOR': '.popular-topic-body-container',
+		'FN_RESIZE': 'resizePopularTopicWidget',
+		'CONTAINER': '.container',
+		'SMALL': 'small',
+		'NO_ICON': 'no-icon',
+		'POPULAR_TOPIC_BODY': '.popular-topic-body',
+		'IE_PREFIX': 'Trident/',
+		'IE': 'ie',
+		'MARGIN': 'mr-0',
+		'H5_SELECTOR': '.popular-topic-caption .popular-topic-title',
+		'FONT_SIZE': 'font-size',
+		'FIXED_COUNT': 4,
+		'LIMIT': 12
+	};
+	var c = this;
+	$scope.isLoading = false;
+	var data = c.data;
+	$scope.isFixed = false;
+	var isIE = window.navigator.userAgent.indexOf(CONST.IE_PREFIX) !== -1;
+
+	/**
+	* Return the theme class
+	* @return  {string} themeClass - Theme class
+	*
+	*/
+	$scope.getClass = function () {
+		var isHex = data &amp;&amp; data.isHex || false;
+		return !isHex ? getThemeClass(data.borderColor) : "";
+	};
+
+	/**
+	* Return the style object
+	* @return  {object} style - Style object
+	*
+	*/
+	$scope.getStyle = function () {
+		var style = {};
+		style[CONST.BORDER_COLOR] = data &amp;&amp; data.hexcode;
+		var isHex = data &amp;&amp; data.isHex || false;
+		return isHex ? style : {};
+	};
+
+	var registered = false;
+	var resizeEvents = $._data(window, "events").resize;
+	if (resizeEvents) {
+		resizeEvents.forEach(function (callback) {
+			var handler = callback.handler;
+			var name = handler.name;
+			if (name === CONST.FN_RESIZE) {
+				registered = true;
+			}
+		});
+	}
+
+	if (!registered) {
+		$(window).resize(resizePopularTopicWidget);
+	}
+
+	$scope.$evalAsync(resizePopularTopicWidget);
+	$scope.$evalAsync(topicTooltip);
+
+	/**
+	* Return theme class name based on option
+	* @return  {string} theme-class - theme class name
+	*
+	*/
+	function getThemeClass(background) {
+		var THEME = {
+			'border-primary': 'primary-color',
+			'border-secondary': 'secondary-color',
+			'border-tertiary': 'tertiary-color'
+		};
+		var result = 'tertiary-color';
+		if (background in THEME)
+			result = THEME[background];
+
+		return result;
+	}
+
+	/**
+	* Resize the topic column based on the width
+	*/
+	function resizePopularTopicWidget() {
+		var topicCont = $(CONST.TOPIC_SELECTOR);
+		if (isIE) {
+			resizeWidgetIE(topicCont);
+		}
+		topicTooltip();
+	}
+
+	/**
+	 * IE responsive support
+	 */
+	function resizeWidgetIE(topicCont) {
+		var MIN_TOPIC_WIDTH = 150;
+		var MAX_TOPIC_WIDTH = 250;
+		var PADDING = 16;
+		var MIN_BREAK_POINT = 330;
+		var MOBILE_WIDTH = 400;
+		$(CONST.TOPIC_SELECTOR).addClass(CONST.IE);
+		topicCont.each(function (i, container) {
+			var availablePanelWidth = getPanelWidth(container);
+			var isSmall = $(container).hasClass(CONST.SMALL);
+			var noIcon = $(container).hasClass(CONST.NO_ICON);
+			var limit = CONST.LIMIT;
+			var numberOfTopic = Math.min(Math.round(availablePanelWidth / MIN_TOPIC_WIDTH), limit);
+			numberOfTopic = calcTopicCount(numberOfTopic, MIN_TOPIC_WIDTH, availablePanelWidth, PADDING, true);
+			isSmall = true;
+			if (availablePanelWidth &lt;= MOBILE_WIDTH) {
+				numberOfTopic = 2;
+				if ((isSmall &amp;&amp; !noIcon) || (availablePanelWidth &lt;= MIN_BREAK_POINT)) {
+					numberOfTopic = 1;
+				}
+			}
+			var topicWidth = Math.floor((availablePanelWidth - ((numberOfTopic) * PADDING) - 1) / numberOfTopic);
+			topicWidth = (numberOfTopic === 1 &amp;&amp; isSmall &amp;&amp; !noIcon) ? availablePanelWidth : Math.min(topicWidth, MAX_TOPIC_WIDTH);
+			var topicList = $(CONST.POPULAR_TOPIC_BODY, container);
+			topicList.each(function (j, topic) {
+				$(topic).css('width', topicWidth);
+				if (isSmall &amp;&amp; !noIcon) {
+					$(topic).css('max-width', 'inherit');
+				}
+			});
+		});
+	}
+
+	/**
+	 * Calculating topic count to be shown
+	 */
+	function calcTopicCount(topicCount, minTopicWidth, maxWidth, padWidth, isIE) {
+		var calcWidth = calculateWidth(minTopicWidth, padWidth, topicCount, isIE);
+		while ((topicCount &gt; 0) &amp;&amp; (calcWidth &gt; maxWidth)) {
+			topicCount--;
+			calcWidth = calculateWidth(minTopicWidth, padWidth, topicCount, isIE);
+		}
+		return topicCount;
+	}
+
+	/**
+	 * Calacuate width based on available space
+	 */
+	function calculateWidth(minTopicWidth, padWidth, topicCount, isIE) {
+		var calcWidth = 0;
+		var gridGapCount = topicCount - 1;
+		if (isIE) {
+			gridGapCount = topicCount;
+		}
+		calcWidth = (minTopicWidth * topicCount) + (gridGapCount * padWidth);
+		return calcWidth;
+	}
+
+	/**
+	 * Get panel space of widget
+	 */
+	function getPanelWidth(topicPanel) {
+		var panelWidth = $(topicPanel).width();
+		var parentWidth = $(topicPanel).parents(CONST.CONTAINER).width() || panelWidth;
+		return Math.min(parentWidth, panelWidth);
+	}
+
+	/**
+	 * Checking ellipsis applied to topic names
+	 */
+	function checkEllipsis(tooltip) {
+		if (isIE) {
+			return tooltip.scrollWidth &gt; $(tooltip).parent().width();
+		}
+		var fontSize = parseFloat($(tooltip).css(CONST.FONT_SIZE));
+		return (($(tooltip).height() + fontSize / 2) &lt; tooltip.scrollHeight);
+	}
+
+	/**
+	 * Applying tooltip to ellipsis elements
+	 */
+	function topicTooltip() {
+		var topics = $(CONST.H5_SELECTOR);
+		topics.tooltip('enable');
+		topics.each(function (i, tooltip) {
+			if (!checkEllipsis(tooltip)) {
+				$(tooltip).tooltip('disable');
+			}
+		});
+	}
+
+    c.asyncGet = function() {
+        $scope.isLoading = true;
+        c.data.action = "loadData";
+        c.server.update().then(function(response) {
+            fetchPopularTopicsData();
+        });
+    }
+    var fetchPopularTopicsData = function() {
+        $scope.isLoading = false;
+        $scope.isFixed = (data.popularTopics &amp;&amp; (data.popularTopics.length &lt; CONST.FIXED_COUNT)) || false;
+        setTimeout(resizePopularTopicWidget);
+        setTimeout(topicTooltip);
+    };
+
+    var load_config = c.data.load_config;
+    if (load_config === "async")
+        setTimeout(c.asyncGet);
+    else
+        fetchPopularTopicsData();
+}]]&gt;&lt;/client_script&gt;&lt;controller_as&gt;c&lt;/controller_as&gt;&lt;css&gt;/*** Variables declaration **/&amp;#13;
+&amp;#13;
+$border-radius: 6px;&amp;#13;
+$shadow: 0px 2px 10px rgba(23, 40, 52, 0.08);&amp;#13;
+$normal-img-size: 56px;&amp;#13;
+$small-img-size: 32px;&amp;#13;
+$rm: 10px;&amp;#13;
+$text-primary: #181a1f !default;&amp;#13;
+$color-sp-separator: #eaeaea !default;&amp;#13;
+$headings-font-weight: 600 !default;&amp;#13;
+$border-primary: #8790a1 !default;&amp;#13;
+$border-secondary: #acb2be !default;&amp;#13;
+$border-tertiary: #dadde2 !default;&amp;#13;
+$sp-panel-box-shadow: 0 4px 8px 0 rgba(23, 40, 52, 0.08) !default;&amp;#13;
+&amp;#13;
+.popular-topic-panel * {&amp;#13;
+	box-sizing: border-box;&amp;#13;
+	margin: 0;&amp;#13;
+	padding: 0;&amp;#13;
+	p {&amp;#13;
+		margin: 0 0 1.1rem;&amp;#13;
+	}&amp;#13;
+}&amp;#13;
+&amp;#13;
+.popular-topic-panel {&amp;#13;
+	background-color: $color-lightest;&amp;#13;
+	border-radius: $border-radius-large;&amp;#13;
+	box-shadow: $shadow;&amp;#13;
+	margin-bottom: $rm * 1.6;&amp;#13;
+	color: $text-primary;&amp;#13;
+	border-color: transparent;&amp;#13;
+}&amp;#13;
+&amp;#13;
+.popular-topic-panel.small {&amp;#13;
+	font-size: $rm * 1.6;&amp;#13;
+}&amp;#13;
+&amp;#13;
+.popular-topic-panel &amp;gt; .popular-topic-heading {&amp;#13;
+	word-wrap: break-word;&amp;#13;
+	padding: $rm * 2.4;&amp;#13;
+	color: $text-primary;&amp;#13;
+	border-top-right-radius: $border-radius;&amp;#13;
+	border-top-left-radius: $border-radius;&amp;#13;
+	border-bottom: 1px solid $color-sp-separator;&amp;#13;
+	background: none;&amp;#13;
+}&amp;#13;
+&amp;#13;
+.popular-topic-body-container {&amp;#13;
+	padding: 1.6 * $rm 2.4 * $rm;&amp;#13;
+	display: grid;&amp;#13;
+	grid-auto-rows: 1fr;&amp;#13;
+	grid-template-columns: 1fr;&amp;#13;
+	grid-gap: 1.6 * $rm;&amp;#13;
+}&amp;#13;
+.popular-topic-empty-state {&amp;#13;
+	height: 15 * $rm;&amp;#13;
+	display: flex;&amp;#13;
+	justify-content: center;&amp;#13;
+	align-items: center;&amp;#13;
+	padding: 2.4rem;&amp;#13;
+	text-align: center;&amp;#13;
+	.popular-topic-empty-text{&amp;#13;
+		font-size: $font-size-base;&amp;#13;
+		color:$text-secondary;&amp;#13;
+	}&amp;#13;
+}&amp;#13;
+.popular-topic-body {&amp;#13;
+	margin-bottom: 0;&amp;#13;
+	background-color: $color-lightest;&amp;#13;
+	border-width: 1px;&amp;#13;
+	border-style: solid;&amp;#13;
+	border-radius: $border-radius-base;&amp;#13;
+}&amp;#13;
+&amp;#13;
+.popular-topic-body:hover {&amp;#13;
+	box-shadow: $sp-panel-box-shadow;&amp;#13;
+}&amp;#13;
+&amp;#13;
+.popular-topic-body &amp;gt; .popular-topic-link {&amp;#13;
+	text-decoration: none;&amp;#13;
+	background-color: transparent;&amp;#13;
+	cursor: pointer;&amp;#13;
+	color: $text-primary;&amp;#13;
+	display: block;&amp;#13;
+	padding: 1em;&amp;#13;
+	height: 100%;&amp;#13;
+	border-radius: $border-radius-base;&amp;#13;
+}&amp;#13;
+&amp;#13;
+.popular-topic-body-container.no-icon:not(.small) .popular-topic-link {&amp;#13;
+	padding-top: $rm * 5.2;&amp;#13;
+	padding-bottom: $rm * 5.2;&amp;#13;
+}&amp;#13;
+&amp;#13;
+.popular-topic-body-container.small .popular-topic-link {&amp;#13;
+	display: flex;&amp;#13;
+	align-items: center;&amp;#13;
+	height: 100%;&amp;#13;
+}&amp;#13;
+&amp;#13;
+.popular-topic-body img {&amp;#13;
+	display: block;&amp;#13;
+	max-width: 100%;&amp;#13;
+	margin-left: auto;&amp;#13;
+	margin-right: auto;&amp;#13;
+	border: 0;&amp;#13;
+	width: $normal-img-size;&amp;#13;
+	height: $normal-img-size;&amp;#13;
+}&amp;#13;
+&amp;#13;
+.popular-topic-body-container.small img {&amp;#13;
+	width: $small-img-size;&amp;#13;
+	height: $small-img-size;&amp;#13;
+}&amp;#13;
+&amp;#13;
+.popular-topic-body .popular-topic-caption {&amp;#13;
+	font-size: 1em;&amp;#13;
+	text-align: center;&amp;#13;
+}&amp;#13;
+&amp;#13;
+.popular-topic-caption .popular-topic-title {&amp;#13;
+	word-break: break-word;&amp;#13;
+	overflow: hidden;&amp;#13;
+	text-overflow: ellipsis;&amp;#13;
+	display: -webkit-box;&amp;#13;
+	-webkit-line-clamp: 2;&amp;#13;
+	-webkit-box-orient: vertical;&amp;#13;
+	color: $text-primary;&amp;#13;
+	font-weight: $headings-font-weight;&amp;#13;
+}&amp;#13;
+&amp;#13;
+.popular-topic-caption .tooltip-inner {&amp;#13;
+	padding: 0.3rem 0.8rem;&amp;#13;
+}&amp;#13;
+&amp;#13;
+.popular-topic-caption .tooltip-arrow {&amp;#13;
+	bottom: -5px;&amp;#13;
+}&amp;#13;
+&amp;#13;
+.popular-topic-body-container:not(.small) .popular-topic-caption {&amp;#13;
+	padding-top: $rm * 1.6;&amp;#13;
+	margin-bottom: $rm * 0.5;&amp;#13;
+	.popular-topic-title {&amp;#13;
+		font-size: $rm * 1.6;&amp;#13;
+	}&amp;#13;
+}&amp;#13;
+&amp;#13;
+.popular-topic-body-container.small .popular-topic-caption {&amp;#13;
+	width: calc(100% - $small-img-size);&amp;#13;
+	text-align: left;&amp;#13;
+	display: flex;&amp;#13;
+	align-items: center;&amp;#13;
+	height: 100%;&amp;#13;
+	padding-left: 1em;&amp;#13;
+	margin-left: 0;&amp;#13;
+}&amp;#13;
+&amp;#13;
+.popular-topic-body-container.no-icon .popular-topic-caption {&amp;#13;
+	width: 100%;&amp;#13;
+	margin: 0;&amp;#13;
+	padding: 0;&amp;#13;
+	display: flex;&amp;#13;
+	align-items: center;&amp;#13;
+	justify-content: center;&amp;#13;
+	height: 100%;&amp;#13;
+	text-align: center;&amp;#13;
+	max-width: none;&amp;#13;
+}&amp;#13;
+&amp;#13;
+.popular-topic-body-container.no-icon img {&amp;#13;
+	display: none;&amp;#13;
+}&amp;#13;
+&amp;#13;
+.primary-color {&amp;#13;
+	border-color: $border-primary;&amp;#13;
+}&amp;#13;
+&amp;#13;
+.secondary-color {&amp;#13;
+	border-color: $border-secondary;&amp;#13;
+}&amp;#13;
+&amp;#13;
+.tertiary-color {&amp;#13;
+	border-color: $border-tertiary;&amp;#13;
+}&amp;#13;
+&amp;#13;
+@media screen and (min-width: 330px) {&amp;#13;
+	.popular-topic-body-container {&amp;#13;
+		grid-template-columns: repeat(2, minmax($rm * 13, 1fr));&amp;#13;
+		grid-gap: $rm * 1.6 $rm;&amp;#13;
+	}&amp;#13;
+}&amp;#13;
+&amp;#13;
+@media screen and (max-width: 430px) {&amp;#13;
+	.popular-topic-body-container.small:not(.no-icon) {&amp;#13;
+		grid-template-columns: 1fr;&amp;#13;
+	}&amp;#13;
+	.popular-topic-body-container {&amp;#13;
+		padding: 1.6 * $rm;&amp;#13;
+	}&amp;#13;
+}&amp;#13;
+&amp;#13;
+@media screen and (min-width: 430px) {&amp;#13;
+	.popular-topic-body {&amp;#13;
+		max-width: $rm * 25;&amp;#13;
+	}&amp;#13;
+}&amp;#13;
+&amp;#13;
+@media screen and (min-width: 480px) {&amp;#13;
+	.popular-topic-body-container:not(.fixed) {&amp;#13;
+		grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));&amp;#13;
+		grid-gap: 1.6 * $rm;&amp;#13;
+	}&amp;#13;
+	.popular-topic-body-container.fixed {&amp;#13;
+		grid-template-columns: repeat(auto-fill, minmax($rm * 15, 1fr));&amp;#13;
+		grid-gap: 1.6 * $rm;&amp;#13;
+	}&amp;#13;
+}&amp;#13;
+&amp;#13;
+.ie.popular-topic-body-container {&amp;#13;
+	display: flex;&amp;#13;
+	flex-wrap: wrap;&amp;#13;
+	padding-bottom: 0;&amp;#13;
+	padding-right: 0.8 * $rm;&amp;#13;
+}&amp;#13;
+&amp;#13;
+.ie .popular-topic-body {&amp;#13;
+	margin-right: $rm * 1.6;&amp;#13;
+	margin-bottom: $rm * 1.6;&amp;#13;
+	min-width: $rm * 15;&amp;#13;
+	max-width: $rm * 25;&amp;#13;
+}&amp;#13;
+&amp;#13;
+.ie .popular-topic-title {&amp;#13;
+	white-space: nowrap;&amp;#13;
+}&amp;#13;
+&lt;/css&gt;&lt;data_table&gt;sp_instance&lt;/data_table&gt;&lt;demo_data/&gt;&lt;description/&gt;&lt;docs/&gt;&lt;field_list/&gt;&lt;has_preview&gt;true&lt;/has_preview&gt;&lt;id/&gt;&lt;internal&gt;false&lt;/internal&gt;&lt;link&gt;&lt;![CDATA[function link(scope, element, attrs, controller) {
+    controller.keydownAction = function(event) {
+        if (event.keyCode === 13 || event.keyCode === 32) {
+            event.preventDefault();
+            event.stopPropagation();
+            event.target.click();
+        }
+    };
+}]]&gt;&lt;/link&gt;&lt;name&gt;Copy of Popular Topics&lt;/name&gt;&lt;option_schema&gt;[{"hint":"Title name of the widget","name":"widget_title","section":"Presentation","default_value":"Popular topics","label":"Title","type":"string"},{"hint":"Number of topics to be shown","name":"topic_limit","section":"Presentation","default_value":"8","label":"Number of topics","type":"choice","choices":[{"label":"4","value":"4"},{"label":"6","value":"6"},{"label":"8","value":"8"},{"label":"12","value":"12"}]},{"hint":"Display size (Normal / Small)","name":"display_size","section":"Presentation","default_value":"Normal","label":"Display size","type":"choice","choices":[{"label":"Normal","value":"Normal"},{"label":"Small","value":"Small"}]},{"hint":"Border color of popular topic","name":"border_color","section":"Presentation","default_value":"Border-tertiary","label":"Border color","type":"choice","choices":[{"label":"Border-primary","value":"Border-primary"},{"label":"Border-secondary","value":"Border-secondary"},{"label":"Border-tertiary","value":"Border-tertiary"},{"label":"Hexcode","value":"Hexcode"}]},{"hint":"Hex code of border color","name":"hexcode","section":"Presentation","default_value":"#FFFFFF","label":"Hexcode","type":"string"},{"hint":"Icon to be shown for popular topic","name":"icon","section":"Presentation","default_value":"true","label":"Show topic icon","type":"boolean"},{"name":"load_config","section":"other","default_value":"async","label":"Load configuration","type":"choice","choices":[{"label":"Synchronous","value":"sync"},{"label":"Asynchronous","value":"async"}]},{"hint":"Shows empty state if the widget content is empty.","name":"show_empty_state","section":"other","default_value":"false","label":"Show empty state","type":"boolean"}]&lt;/option_schema&gt;&lt;public&gt;false&lt;/public&gt;&lt;roles/&gt;&lt;script&gt;&lt;![CDATA[(function () {
+	data.load_config = options.load_config;
+	if(data.load_config === "async" &amp;&amp; !input)
+		return;
+	var limit = options.topic_limit;
+	var taxonomy = $sp.getTaxonomies();
+	if (!taxonomy || taxonomy.length === 0) {
+		return;
+	}
+	
+	var session = gs.getSession();
+	var popularTopicsDataKey = 'sn_ex_sp_popular_topics_data' + session.getLanguage() + gs.getUserID();
+	var popularTopicsData = JSON.parse(session.getClientData(popularTopicsDataKey));
+	if (popularTopicsData === null || popularTopicsData.length != limit) {
+		data.popularTopics = new PopularTopicsUtil().getPopularTopics(taxonomy, limit, false);
+		session.putClientData(popularTopicsDataKey, JSON.stringify(data.popularTopics));
+	} else {
+		data.popularTopics = popularTopicsData;
+	}
+	data.options = options;
+	populateOptions(data);
+})();
+
+/**
+ * Read and initialize the options
+ * @param {object} data - Data object
+ *
+ */
+function populateOptions(data) {
+	var CONST = {
+		'HEX': 'hexcode',
+		'NORMAL': 'normal',
+		'SMALL': 'small',
+		'TRUE': 'true',
+		'FALSE': 'false',
+		'DEFAULT_COLOR': '#FFFFFF',
+		'DEFAULT_BORDER_OPTION': 'border-tertiary',
+		'REGEX': /^#([0-9A-F]{3}){1,2}$/i
+	};
+	var option = data.options;
+	data.isNormal = (option.display_size.toLowerCase() === CONST.NORMAL);
+	data.isSmall = (option.display_size.toLowerCase() === CONST.SMALL);
+	data.borderColor = option.border_color.toLowerCase();
+	data.icon = option.icon.toLowerCase() === CONST.TRUE;
+	data.isHex = (data.borderColor === CONST.HEX);
+	data.hexcode = option.hexcode;
+	var title = [option.widget_title];
+	data.widgetTitle = gs.getMessage(title);
+
+	if (data.isHex) {
+		if (!CONST.REGEX.test(option.hexcode)) {
+			data.borderColor = CONST.DEFAULT_BORDER_OPTION;
+			data.isHex = false;
+		}
+	}
+}
+]]&gt;&lt;/script&gt;&lt;servicenow&gt;false&lt;/servicenow&gt;&lt;sys_class_name&gt;sp_widget&lt;/sys_class_name&gt;&lt;sys_created_by&gt;seanb&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2024-02-03 23:03:00&lt;/sys_created_on&gt;&lt;sys_id&gt;e995dec32f40ca1052232e5df699b610&lt;/sys_id&gt;&lt;sys_mod_count&gt;0&lt;/sys_mod_count&gt;&lt;sys_name&gt;Copy of Popular Topics&lt;/sys_name&gt;&lt;sys_package display_value="Human Resource" source="x_1022175_hr"&gt;1980ab752f87f11052232e5df699b6c1&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_scope display_value="Human Resource"&gt;1980ab752f87f11052232e5df699b6c1&lt;/sys_scope&gt;&lt;sys_update_name&gt;sp_widget_e995dec32f40ca1052232e5df699b610&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;seanb&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2024-02-03 23:03:00&lt;/sys_updated_on&gt;&lt;template&gt;&lt;![CDATA[&lt;div class="popular-topic-panel panel panel-default panel-wrapper b" ng-if="(data.popularTopics &amp;&amp; data.popularTopics.length &gt; 0) || data.options.show_empty_state === 'true'"&gt;
+	&lt;div class="popular-topic-heading panel-heading b-b"&gt;
+		&lt;h3 class="panel-title"&gt;{{data.widgetTitle}}&lt;/h3&gt;
+	&lt;/div&gt;
+	&lt;div class="popular-topic-panel-body"&gt;
+		&lt;div class="popular-topic-empty-state" ng-if="data.options.show_empty_state === 'true' &amp;&amp; (!data.popularTopics || data.popularTopics.length === 0)"&gt;
+			&lt;p class="popular-topic-empty-text"&gt;
+				${We don't have any popular topics to show you yet.}
+			&lt;/p&gt;
+		&lt;/div&gt;
+		&lt;div class="popular-topic-body-container"
+			ng-class="{'small': data.isSmall, 'no-icon': !data.icon, 'fixed': isFixed }" 
+			ng-if="data.popularTopics &amp;&amp; data.popularTopics.length &gt; 0"&gt;
+			
+			&lt;div class="popular-topic-body" ng-class="getClass()" ng-style="getStyle()"
+				ng-repeat="topic in data.popularTopics"&gt;
+				&lt;a class="popular-topic-link" data-ng-attr-aria-label="{{data.widgetTitle}}, {{topic.topic}}"
+					ng-href="{{topic.topicUrl}}" ng-keydown="c.keydownAction($event)"&gt;
+					&lt;img ng-src="{{topic.icon}}" alt="" /&gt;
+					&lt;div class="popular-topic-caption"&gt;
+						&lt;span class = "popular-topic-title" data-toggle="tooltip" title="{{topic.topic}}"&gt;
+							{{topic.topic}}
+						&lt;/span&gt;
+					&lt;/div&gt;
+				&lt;/a&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt;]]&gt;&lt;/template&gt;&lt;/sp_widget&gt;&lt;/record_update&gt;</payload>
+        <payload_hash>1151688629</payload_hash>
+        <record_name>Copy of Popular Topics</record_name>
+        <reverted_from/>
+        <source>f7dfe2712fc8461052232e5df699b667</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>seanb</sys_created_by>
+        <sys_created_on>2024-02-03 23:03:00</sys_created_on>
+        <sys_id>ed95dec32f40ca1052232e5df699b613</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>18d7135fdd00000001</sys_recorded_at>
+        <sys_updated_by>seanb</sys_updated_by>
+        <sys_updated_on>2024-02-03 23:03:00</sys_updated_on>
+        <type>Widget</type>
+        <update_guid>2595dec3d040ca1094cafef1e43bb013</update_guid>
+        <update_guid_history>2595dec3d040ca1094cafef1e43bb013:1151688629</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="Copy of Popular Topics">f7eb1e8b2f40ca1052232e5df699b69e</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>seanb</sys_created_by>
+        <sys_created_on>2024-02-03 23:30:44</sys_created_on>
+        <sys_db_object display_value="" name="sp_widget">sp_widget</sys_db_object>
+        <sys_id>29459983e5654a80b006ebc0fac86900</sys_id>
+        <sys_metadata>e995dec32f40ca1052232e5df699b610</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Copy of Popular Topics</sys_name>
+        <sys_package display_value="Human Resource" source="x_1022175_hr">1980ab752f87f11052232e5df699b6c1</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Human Resource">1980ab752f87f11052232e5df699b6c1</sys_scope>
+        <sys_scope_delete display_value="">17665fce484249118462a12012e01369</sys_scope_delete>
+        <sys_update_name>sp_widget_e995dec32f40ca1052232e5df699b610</sys_update_name>
+        <sys_update_version display_value="sp_widget_e995dec32f40ca1052232e5df699b610">ed95dec32f40ca1052232e5df699b613</sys_update_version>
+        <sys_updated_by>seanb</sys_updated_by>
+        <sys_updated_on>2024-02-03 23:30:44</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

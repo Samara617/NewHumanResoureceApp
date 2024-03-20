@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="m2m_sp_portal_taxonomy">
+    <m2m_sp_portal_taxonomy action="DELETE">
+        <active>true</active>
+        <order>100</order>
+        <sp_portal display_value="Human Resource Page">4424cf362f808a1052232e5df699b651</sp_portal>
+        <sys_class_name>m2m_sp_portal_taxonomy</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-02-03 16:07:32</sys_created_on>
+        <sys_id>bb76f4472f888a1052232e5df699b6de</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Human Resource Page.Employee</sys_name>
+        <sys_package display_value="Human Resource" source="x_1022175_hr">1980ab752f87f11052232e5df699b6c1</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Human Resource">1980ab752f87f11052232e5df699b6c1</sys_scope>
+        <sys_update_name>m2m_sp_portal_taxonomy_bb76f4472f888a1052232e5df699b6de</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-02-03 16:07:32</sys_updated_on>
+        <taxonomy display_value="Employee">1f5d5a40c3203010069aec4b7d40dd93</taxonomy>
+    </m2m_sp_portal_taxonomy>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Human Resource">1980ab752f87f11052232e5df699b6c1</application>
+        <file_path/>
+        <instance_id>60cecf3adbc8081452dd2f17d496199a</instance_id>
+        <instance_name>dev93894</instance_name>
+        <name>m2m_sp_portal_taxonomy_bb76f4472f888a1052232e5df699b6de</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="m2m_sp_portal_taxonomy"><m2m_sp_portal_taxonomy action="INSERT_OR_UPDATE"><active>true</active><order>100</order><sp_portal display_value="Human Resource Page">4424cf362f808a1052232e5df699b651</sp_portal><sys_class_name>m2m_sp_portal_taxonomy</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2024-02-03 16:07:32</sys_created_on><sys_id>bb76f4472f888a1052232e5df699b6de</sys_id><sys_mod_count>0</sys_mod_count><sys_name>Human Resource Page.Employee</sys_name><sys_package display_value="Human Resource" source="x_1022175_hr">1980ab752f87f11052232e5df699b6c1</sys_package><sys_policy/><sys_scope display_value="Human Resource">1980ab752f87f11052232e5df699b6c1</sys_scope><sys_update_name>m2m_sp_portal_taxonomy_bb76f4472f888a1052232e5df699b6de</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2024-02-03 16:07:32</sys_updated_on><taxonomy display_value="Employee">1f5d5a40c3203010069aec4b7d40dd93</taxonomy></m2m_sp_portal_taxonomy></record_update>]]></payload>
+        <payload_hash>1365569822</payload_hash>
+        <record_name>Human Resource Page.Employee</record_name>
+        <reverted_from/>
+        <source>f7dfe2712fc8461052232e5df699b667</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-02-03 16:07:32</sys_created_on>
+        <sys_id>3b76f4472f888a1052232e5df699b6e1</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>18d6fb9a12a0000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-02-03 16:07:32</sys_updated_on>
+        <type>Portal Taxonomy</type>
+        <update_guid>7f76f44755888a10768b5541c4ea6ae0</update_guid>
+        <update_guid_history>7f76f44755888a10768b5541c4ea6ae0:1365569822</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="Human Resource Page.Employee">68ad776c2f50825052232e5df699b63b</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-02-08 22:28:28</sys_created_on>
+        <sys_db_object display_value="" name="m2m_sp_portal_taxonomy">m2m_sp_portal_taxonomy</sys_db_object>
+        <sys_id>346c17f0fab34723a933d9da35eb9aa1</sys_id>
+        <sys_metadata>bb76f4472f888a1052232e5df699b6de</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Human Resource Page.Employee</sys_name>
+        <sys_package display_value="Human Resource" source="x_1022175_hr">1980ab752f87f11052232e5df699b6c1</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Human Resource">1980ab752f87f11052232e5df699b6c1</sys_scope>
+        <sys_scope_delete display_value="">17665fce484249118462a12012e01369</sys_scope_delete>
+        <sys_update_name>m2m_sp_portal_taxonomy_bb76f4472f888a1052232e5df699b6de</sys_update_name>
+        <sys_update_version display_value="m2m_sp_portal_taxonomy_bb76f4472f888a1052232e5df699b6de">3b76f4472f888a1052232e5df699b6e1</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-02-08 22:28:28</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

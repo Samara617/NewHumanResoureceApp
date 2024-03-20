@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_alias">
+    <sys_alias action="INSERT_OR_UPDATE">
+        <configuration_template/>
+        <connection_type>sys_connection</connection_type>
+        <id>x_1022175_hr.HR_App</id>
+        <is_internal>false</is_internal>
+        <multiple_connections>false</multiple_connections>
+        <name>HR App</name>
+        <parent/>
+        <retry_policy display_value="Default SFTP Retry Policy">e385484773100010e3a71afe2ff6a709</retry_policy>
+        <sys_class_name>sys_alias</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-03-20 18:29:29</sys_created_on>
+        <sys_id>30ef4ef92fc90e1052232e5df699b6c5</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>x_1022175_hr.HR_App</sys_name>
+        <sys_package display_value="Human Resource" source="x_1022175_hr">1980ab752f87f11052232e5df699b6c1</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Human Resource">1980ab752f87f11052232e5df699b6c1</sys_scope>
+        <sys_update_name>sys_alias_30ef4ef92fc90e1052232e5df699b6c5</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-03-20 18:29:58</sys_updated_on>
+        <type>connection</type>
+    </sys_alias>
+</record_update>

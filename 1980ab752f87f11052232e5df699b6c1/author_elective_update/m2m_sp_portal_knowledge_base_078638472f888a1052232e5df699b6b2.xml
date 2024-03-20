@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="m2m_sp_portal_knowledge_base">
+    <m2m_sp_portal_knowledge_base action="DELETE">
+        <active>true</active>
+        <kb_knowledge_base display_value="Knowledge">dfc19531bf2021003f07e2c1ac0739ab</kb_knowledge_base>
+        <order>100</order>
+        <sp_portal display_value="Human Resource Page">4424cf362f808a1052232e5df699b651</sp_portal>
+        <sys_class_name>m2m_sp_portal_knowledge_base</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-02-03 16:07:46</sys_created_on>
+        <sys_id>078638472f888a1052232e5df699b6b2</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Knowledge.Human Resource Page</sys_name>
+        <sys_package display_value="Human Resource" source="x_1022175_hr">1980ab752f87f11052232e5df699b6c1</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Human Resource">1980ab752f87f11052232e5df699b6c1</sys_scope>
+        <sys_update_name>m2m_sp_portal_knowledge_base_078638472f888a1052232e5df699b6b2</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-02-03 16:07:46</sys_updated_on>
+    </m2m_sp_portal_knowledge_base>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Human Resource">1980ab752f87f11052232e5df699b6c1</application>
+        <file_path/>
+        <instance_id>60cecf3adbc8081452dd2f17d496199a</instance_id>
+        <instance_name>dev93894</instance_name>
+        <name>m2m_sp_portal_knowledge_base_078638472f888a1052232e5df699b6b2</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="m2m_sp_portal_knowledge_base"><m2m_sp_portal_knowledge_base action="INSERT_OR_UPDATE"><active>true</active><kb_knowledge_base display_value="Knowledge">dfc19531bf2021003f07e2c1ac0739ab</kb_knowledge_base><order>100</order><sp_portal display_value="Human Resource Page">4424cf362f808a1052232e5df699b651</sp_portal><sys_class_name>m2m_sp_portal_knowledge_base</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2024-02-03 16:07:46</sys_created_on><sys_id>078638472f888a1052232e5df699b6b2</sys_id><sys_mod_count>0</sys_mod_count><sys_name>Knowledge.Human Resource Page</sys_name><sys_package display_value="Human Resource" source="x_1022175_hr">1980ab752f87f11052232e5df699b6c1</sys_package><sys_policy/><sys_scope display_value="Human Resource">1980ab752f87f11052232e5df699b6c1</sys_scope><sys_update_name>m2m_sp_portal_knowledge_base_078638472f888a1052232e5df699b6b2</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2024-02-03 16:07:46</sys_updated_on></m2m_sp_portal_knowledge_base></record_update>]]></payload>
+        <payload_hash>-1278023317</payload_hash>
+        <record_name>Knowledge.Human Resource Page</record_name>
+        <reverted_from/>
+        <source>f7dfe2712fc8461052232e5df699b667</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-02-03 16:07:46</sys_created_on>
+        <sys_id>4f8638472f888a1052232e5df699b6b4</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>18d6fb9d78c0000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-02-03 16:07:46</sys_updated_on>
+        <type>Portal Knowledge Base</type>
+        <update_guid>838638474f888a1062eca0fc51c694b4</update_guid>
+        <update_guid_history>838638474f888a1062eca0fc51c694b4:-1278023317</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="Knowledge.Human Resource Page">68ad776c2f50825052232e5df699b640</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-02-08 22:28:28</sys_created_on>
+        <sys_db_object display_value="" name="m2m_sp_portal_knowledge_base">m2m_sp_portal_knowledge_base</sys_db_object>
+        <sys_id>273cde22e29742ae93681d95225fdfe1</sys_id>
+        <sys_metadata>078638472f888a1052232e5df699b6b2</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Knowledge.Human Resource Page</sys_name>
+        <sys_package display_value="Human Resource" source="x_1022175_hr">1980ab752f87f11052232e5df699b6c1</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Human Resource">1980ab752f87f11052232e5df699b6c1</sys_scope>
+        <sys_scope_delete display_value="">17665fce484249118462a12012e01369</sys_scope_delete>
+        <sys_update_name>m2m_sp_portal_knowledge_base_078638472f888a1052232e5df699b6b2</sys_update_name>
+        <sys_update_version display_value="m2m_sp_portal_knowledge_base_078638472f888a1052232e5df699b6b2">4f8638472f888a1052232e5df699b6b4</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-02-08 22:28:28</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

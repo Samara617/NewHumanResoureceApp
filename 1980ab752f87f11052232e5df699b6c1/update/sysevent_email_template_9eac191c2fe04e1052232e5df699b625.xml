@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sysevent_email_template">
+    <sysevent_email_template action="INSERT_OR_UPDATE">
+        <collection>x_1022175_hr_hr_task</collection>
+        <email_layout display_value="Employee notification layout">9d3d6f8777823010f088a0e89e5a997f</email_layout>
+        <message/>
+        <message_html><![CDATA[<table style="-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; mso-table-lspace: 0; mso-table-rspace: 0; border-collapse: collapse !important; margin: 0; padding: 0; width: 100% !important; background-color: #eee;">
+<tbody>
+<tr>
+<td>
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr>
+<td style="-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; mso-table-lspace: 0; mso-table-rspace: 0; padding: 0 15px 15px;">
+<table style="-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; mso-table-lspace: 0; mso-table-rspace: 0; border-collapse: collapse !important; height: 100% !important; margin: 0; padding: 15px; width: 100% !important; background-color: #fff; font-size: 16px;">
+<tbody>
+<tr>
+<td style="-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; mso-table-lspace: 0; mso-table-rspace: 0; padding: 15px;">
+<div>&nbsp;</div>
+Short description: ${short_description}<br /><hr />
+<p>Description: ${description}</p>
+<p><br />Comments and Work notes: ${comments_and_work_notes}</p>
+<hr />
+<div>Manage the emails you receive in <a href="/notification_preferences.do">Notification Preferences</a>.</div>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>]]></message_html>
+        <message_list/>
+        <message_text><![CDATA[Assigned to: ${assigned_to}
+Number: ${number}
+
+Description: ${description}
+Additional comments: ${comments}
+]]></message_text>
+        <name>hr.task.notification</name>
+        <sms_alternate/>
+        <subject>HR Task ${number} notification -- ${short_description}</subject>
+        <sys_class_name>sysevent_email_template</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-02-20 02:22:24</sys_created_on>
+        <sys_id>9eac191c2fe04e1052232e5df699b625</sys_id>
+        <sys_mod_count>5</sys_mod_count>
+        <sys_name>hr.task.notification</sys_name>
+        <sys_package display_value="Human Resource" source="x_1022175_hr">1980ab752f87f11052232e5df699b6c1</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Human Resource">1980ab752f87f11052232e5df699b6c1</sys_scope>
+        <sys_update_name>sysevent_email_template_9eac191c2fe04e1052232e5df699b625</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-02-28 00:50:26</sys_updated_on>
+        <sys_version>2</sys_version>
+    </sysevent_email_template>
+</record_update>

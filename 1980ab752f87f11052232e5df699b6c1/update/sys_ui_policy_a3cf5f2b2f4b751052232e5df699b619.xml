@@ -12,7 +12,7 @@
         <model_table/>
         <on_load>true</on_load>
         <order>100</order>
-        <reverse_if_false>true</reverse_if_false>
+        <reverse_if_false>false</reverse_if_false>
         <run_scripts>true</run_scripts>
         <script_false><![CDATA[function onCondition() {
 
@@ -30,7 +30,7 @@ g_form.setVisible('closed_by', true);
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>a3cf5f2b2f4b751052232e5df699b619</sys_id>
-        <sys_mod_count>0</sys_mod_count>
+        <sys_mod_count>1</sys_mod_count>
         <sys_name>closed by is visible when state is  closed</sys_name>
         <sys_overrides/>
         <sys_package display_value="Human Resource" source="x_1022175_hr">1980ab752f87f11052232e5df699b6c1</sys_package>
@@ -38,7 +38,7 @@ g_form.setVisible('closed_by', true);
         <sys_scope display_value="Human Resource">1980ab752f87f11052232e5df699b6c1</sys_scope>
         <sys_update_name>sys_ui_policy_a3cf5f2b2f4b751052232e5df699b619</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-12-18 00:46:10</sys_updated_on>
+        <sys_updated_on>2024-02-08 06:05:01</sys_updated_on>
         <table>x_1022175_hr_x_1022175_hr</table>
         <ui_type>0</ui_type>
         <view/>

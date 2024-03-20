@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_column">
+    <sp_column action="DELETE">
+        <class_name/>
+        <order>1</order>
+        <semantic_tag/>
+        <size>12</size>
+        <size_lg/>
+        <size_sm/>
+        <size_xs/>
+        <sp_row display_value="2">a3f7224b2f80ca1052232e5df699b609</sp_row>
+        <sys_class_name>sp_column</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-02-04 00:23:25</sys_created_on>
+        <sys_id>e7f7224b2f80ca1052232e5df699b60b</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>1</sys_name>
+        <sys_package display_value="Human Resource" source="x_1022175_hr">1980ab752f87f11052232e5df699b6c1</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Human Resource">1980ab752f87f11052232e5df699b6c1</sys_scope>
+        <sys_update_name>sp_column_e7f7224b2f80ca1052232e5df699b60b</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-02-04 00:23:25</sys_updated_on>
+    </sp_column>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Human Resource">1980ab752f87f11052232e5df699b6c1</application>
+        <file_path/>
+        <instance_id>60cecf3adbc8081452dd2f17d496199a</instance_id>
+        <instance_name>dev93894</instance_name>
+        <name>sp_column_e7f7224b2f80ca1052232e5df699b60b</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_column"><sp_column action="INSERT_OR_UPDATE"><class_name/><order>1</order><semantic_tag/><size>12</size><size_lg/><size_sm/><size_xs/><sp_row display_value="2">a3f7224b2f80ca1052232e5df699b609</sp_row><sys_class_name>sp_column</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2024-02-04 00:23:25</sys_created_on><sys_id>e7f7224b2f80ca1052232e5df699b60b</sys_id><sys_mod_count>0</sys_mod_count><sys_name>1</sys_name><sys_package display_value="Human Resource" source="x_1022175_hr">1980ab752f87f11052232e5df699b6c1</sys_package><sys_policy/><sys_scope display_value="Human Resource">1980ab752f87f11052232e5df699b6c1</sys_scope><sys_update_name>sp_column_e7f7224b2f80ca1052232e5df699b60b</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2024-02-04 00:23:25</sys_updated_on></sp_column></record_update>]]></payload>
+        <payload_hash>-2133404438</payload_hash>
+        <record_name>1</record_name>
+        <reverted_from/>
+        <source>f7dfe2712fc8461052232e5df699b667</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-02-04 00:23:25</sys_created_on>
+        <sys_id>27f7224b2f80ca1052232e5df699b60d</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>18d717f9de90000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-02-04 00:23:25</sys_updated_on>
+        <type>Column</type>
+        <update_guid>6bf7224b2180ca107cd6e13e79ae9b0c</update_guid>
+        <update_guid_history>6bf7224b2180ca107cd6e13e79ae9b0c:-2133404438</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="1">6ce8a28b2f80ca1052232e5df699b650</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-02-04 00:27:19</sys_created_on>
+        <sys_db_object display_value="" name="sp_column">sp_column</sys_db_object>
+        <sys_id>71fdee0a9533404fb55e9e96c4cfc211</sys_id>
+        <sys_metadata>e7f7224b2f80ca1052232e5df699b60b</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>1</sys_name>
+        <sys_package display_value="Human Resource" source="x_1022175_hr">1980ab752f87f11052232e5df699b6c1</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Human Resource">1980ab752f87f11052232e5df699b6c1</sys_scope>
+        <sys_scope_delete display_value="">17665fce484249118462a12012e01369</sys_scope_delete>
+        <sys_update_name>sp_column_e7f7224b2f80ca1052232e5df699b60b</sys_update_name>
+        <sys_update_version display_value="sp_column_e7f7224b2f80ca1052232e5df699b60b">27f7224b2f80ca1052232e5df699b60d</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-02-04 00:27:19</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

@@ -54,7 +54,7 @@ function serverResolve() {
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>567365192f5f3d1052232e5df699b6f4</sys_id>
-        <sys_mod_count>7</sys_mod_count>
+        <sys_mod_count>8</sys_mod_count>
         <sys_name>Resolved</sys_name>
         <sys_overrides/>
         <sys_package display_value="Human Resource" source="x_1022175_hr">1980ab752f87f11052232e5df699b6c1</sys_package>
@@ -62,9 +62,9 @@ function serverResolve() {
         <sys_scope display_value="Human Resource">1980ab752f87f11052232e5df699b6c1</sys_scope>
         <sys_update_name>sys_ui_action_567365192f5f3d1052232e5df699b6f4</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-01-04 00:02:03</sys_updated_on>
+        <sys_updated_on>2024-03-05 21:16:56</sys_updated_on>
         <table>x_1022175_hr_x_1022175_hr</table>
-        <ui11_compatible>true</ui11_compatible>
+        <ui11_compatible>false</ui11_compatible>
         <ui16_compatible>false</ui16_compatible>
     </sys_ui_action>
 </record_update>

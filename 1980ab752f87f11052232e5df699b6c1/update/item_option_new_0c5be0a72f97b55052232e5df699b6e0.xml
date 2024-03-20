@@ -21,7 +21,7 @@
         <dynamic_value_field display_value="Requested for">362aec272f97b55052232e5df699b68b</dynamic_value_field>
         <enable_also_request_for>false</enable_also_request_for>
         <example_text/>
-        <field>active</field>
+        <field>comments_and_work_notes</field>
         <global>false</global>
         <help_tag>More information</help_tag>
         <help_text/>
@@ -41,7 +41,7 @@
         <map_to_field>true</map_to_field>
         <mask_use_confirmation>false</mask_use_confirmation>
         <mask_use_encryption>false</mask_use_encryption>
-        <name>contact_number</name>
+        <name>comments_and_work_notes</name>
         <order>400</order>
         <post_insert_script/>
         <price_if_checked>0</price_if_checked>
@@ -77,14 +77,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-12-29 21:49:15</sys_created_on>
         <sys_id>0c5be0a72f97b55052232e5df699b6e0</sys_id>
-        <sys_mod_count>4</sys_mod_count>
-        <sys_name>Contact number</sys_name>
+        <sys_mod_count>5</sys_mod_count>
+        <sys_name>comments_and_work_notes</sys_name>
         <sys_package display_value="Human Resource" source="x_1022175_hr">1980ab752f87f11052232e5df699b6c1</sys_package>
         <sys_policy/>
         <sys_scope display_value="Human Resource">1980ab752f87f11052232e5df699b6c1</sys_scope>
         <sys_update_name>item_option_new_0c5be0a72f97b55052232e5df699b6e0</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-01-18 14:08:35</sys_updated_on>
+        <sys_updated_on>2024-02-03 16:33:50</sys_updated_on>
         <table/>
         <tooltip/>
         <type>6</type>

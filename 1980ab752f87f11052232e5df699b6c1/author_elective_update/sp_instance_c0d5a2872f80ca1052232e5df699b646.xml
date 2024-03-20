@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_instance">
+    <sp_instance action="DELETE">
+        <active>true</active>
+        <class_name/>
+        <color>default</color>
+        <css/>
+        <glyph/>
+        <id/>
+        <order>2</order>
+        <roles/>
+        <short_description/>
+        <size>md</size>
+        <sp_column display_value="1">7895cfb62f808a1052232e5df699b60e</sp_column>
+        <sp_widget display_value="Cool Clock">3a36b30b6f3631005be8583e6b3ee490</sp_widget>
+        <sys_class_name>sp_instance</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-02-04 00:13:53</sys_created_on>
+        <sys_id>c0d5a2872f80ca1052232e5df699b646</sys_id>
+        <sys_mod_count>6</sys_mod_count>
+        <sys_name>W</sys_name>
+        <sys_package display_value="Human Resource" source="x_1022175_hr">1980ab752f87f11052232e5df699b6c1</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Human Resource">1980ab752f87f11052232e5df699b6c1</sys_scope>
+        <sys_update_name>sp_instance_c0d5a2872f80ca1052232e5df699b646</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-02-04 00:15:53</sys_updated_on>
+        <title>W</title>
+        <url/>
+        <widget_parameters><![CDATA[{
+	"zone": {
+		"value": "America/Eastern Standard",
+		"displayValue": "America/Eastern Standard"
+	},
+	"c_color": {
+		"value": "yellow",
+		"displayValue": "yellow"
+	}
+}]]></widget_parameters>
+    </sp_instance>
+    <sys_translated_text action="DELETE" query="documentkey=c0d5a2872f80ca1052232e5df699b646"/>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Human Resource">1980ab752f87f11052232e5df699b6c1</application>
+        <file_path/>
+        <instance_id>60cecf3adbc8081452dd2f17d496199a</instance_id>
+        <instance_name>dev93894</instance_name>
+        <name>sp_instance_c0d5a2872f80ca1052232e5df699b646</name>
+        <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="sp_instance"&gt;&lt;sp_instance action="INSERT_OR_UPDATE"&gt;&lt;active&gt;true&lt;/active&gt;&lt;class_name/&gt;&lt;color&gt;default&lt;/color&gt;&lt;css/&gt;&lt;glyph/&gt;&lt;id/&gt;&lt;order&gt;2&lt;/order&gt;&lt;roles/&gt;&lt;short_description/&gt;&lt;size&gt;md&lt;/size&gt;&lt;sp_column display_value="1"&gt;7895cfb62f808a1052232e5df699b60e&lt;/sp_column&gt;&lt;sp_widget display_value="Cool Clock"&gt;3a36b30b6f3631005be8583e6b3ee490&lt;/sp_widget&gt;&lt;sys_class_name&gt;sp_instance&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2024-02-04 00:13:53&lt;/sys_created_on&gt;&lt;sys_id&gt;c0d5a2872f80ca1052232e5df699b646&lt;/sys_id&gt;&lt;sys_mod_count&gt;6&lt;/sys_mod_count&gt;&lt;sys_name&gt;W&lt;/sys_name&gt;&lt;sys_package display_value="Human Resource" source="x_1022175_hr"&gt;1980ab752f87f11052232e5df699b6c1&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_scope display_value="Human Resource"&gt;1980ab752f87f11052232e5df699b6c1&lt;/sys_scope&gt;&lt;sys_update_name&gt;sp_instance_c0d5a2872f80ca1052232e5df699b646&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2024-02-04 00:15:53&lt;/sys_updated_on&gt;&lt;title&gt;W&lt;/title&gt;&lt;url/&gt;&lt;widget_parameters&gt;&lt;![CDATA[{
+	"zone": {
+		"value": "America/Eastern Standard",
+		"displayValue": "America/Eastern Standard"
+	},
+	"c_color": {
+		"value": "yellow",
+		"displayValue": "yellow"
+	}
+}]]&gt;&lt;/widget_parameters&gt;&lt;/sp_instance&gt;&lt;sys_translated_text action="delete_multiple" query="documentkey=c0d5a2872f80ca1052232e5df699b646"/&gt;&lt;/record_update&gt;</payload>
+        <payload_hash>1884022980</payload_hash>
+        <record_name>W</record_name>
+        <reverted_from/>
+        <source>f7dfe2712fc8461052232e5df699b667</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-02-04 00:15:54</sys_created_on>
+        <sys_id>15462e872f80ca1052232e5df699b67b</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>18d7178ba910000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-02-04 00:15:54</sys_updated_on>
+        <type>Instance</type>
+        <update_guid>1d462e873d80ca10ef5a30ff46de0a7a</update_guid>
+        <update_guid_history>1d462e873d80ca10ef5a30ff46de0a7a:1884022980,06362e472580ca1065bca5dbad4a0a8a:-1783588699,0a162e47b280ca10b7349553033eef85:871101398,aaf566878d80ca10baf304489a5cbccb:205888548,5ce5e2873280ca10e0cb2c05fd088b9d:1374998165,ebd5e2876880ca10b1453f316e225e3e:-569207003,c8d5a287ad80ca105774b5043a8bb647:-1344302554</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="W">45566e872f80ca1052232e5df699b6a6</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-02-04 00:16:09</sys_created_on>
+        <sys_db_object display_value="" name="sp_instance">sp_instance</sys_db_object>
+        <sys_id>0643ae2bbd394df4806e3ff3dc005590</sys_id>
+        <sys_metadata>c0d5a2872f80ca1052232e5df699b646</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>W</sys_name>
+        <sys_package display_value="Human Resource" source="x_1022175_hr">1980ab752f87f11052232e5df699b6c1</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Human Resource">1980ab752f87f11052232e5df699b6c1</sys_scope>
+        <sys_scope_delete display_value="">17665fce484249118462a12012e01369</sys_scope_delete>
+        <sys_update_name>sp_instance_c0d5a2872f80ca1052232e5df699b646</sys_update_name>
+        <sys_update_version display_value="sp_instance_c0d5a2872f80ca1052232e5df699b646">15462e872f80ca1052232e5df699b67b</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-02-04 00:16:09</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

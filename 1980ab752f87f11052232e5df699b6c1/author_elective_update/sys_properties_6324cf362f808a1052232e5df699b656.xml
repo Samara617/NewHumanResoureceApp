@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_properties">
+    <sys_properties action="DELETE">
+        <choices/>
+        <description>If true, portal css would be in rem units</description>
+        <ignore_cache>true</ignore_cache>
+        <is_private>false</is_private>
+        <name>glide.service_portal.resize_text.hrp.enable_rem_conversion</name>
+        <read_roles/>
+        <suffix/>
+        <sys_class_name>sys_properties</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-02-03 07:48:05</sys_created_on>
+        <sys_id>6324cf362f808a1052232e5df699b656</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>glide.service_portal.resize_text.hrp.enable_rem_conversion</sys_name>
+        <sys_package display_value="Human Resource" source="x_1022175_hr">1980ab752f87f11052232e5df699b6c1</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Human Resource">1980ab752f87f11052232e5df699b6c1</sys_scope>
+        <sys_update_name>sys_properties_6324cf362f808a1052232e5df699b656</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-02-03 07:48:05</sys_updated_on>
+        <type>boolean</type>
+        <value>true</value>
+        <write_roles/>
+    </sys_properties>
+    <sys_translated_text action="DELETE" query="documentkey=6324cf362f808a1052232e5df699b656"/>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Human Resource">1980ab752f87f11052232e5df699b6c1</application>
+        <file_path/>
+        <instance_id>60cecf3adbc8081452dd2f17d496199a</instance_id>
+        <instance_name>dev93894</instance_name>
+        <name>sys_properties_6324cf362f808a1052232e5df699b656</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_properties"><sys_properties action="INSERT_OR_UPDATE"><choices/><description>If true, portal css would be in rem units</description><ignore_cache>true</ignore_cache><is_private>false</is_private><name>glide.service_portal.resize_text.hrp.enable_rem_conversion</name><read_roles/><suffix/><sys_class_name>sys_properties</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2024-02-03 07:48:05</sys_created_on><sys_id>6324cf362f808a1052232e5df699b656</sys_id><sys_mod_count>0</sys_mod_count><sys_name>glide.service_portal.resize_text.hrp.enable_rem_conversion</sys_name><sys_package display_value="Human Resource" source="x_1022175_hr">1980ab752f87f11052232e5df699b6c1</sys_package><sys_policy/><sys_scope display_value="Human Resource">1980ab752f87f11052232e5df699b6c1</sys_scope><sys_update_name>sys_properties_6324cf362f808a1052232e5df699b656</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2024-02-03 07:48:05</sys_updated_on><type>boolean</type><value>true</value><write_roles/></sys_properties><sys_translated_text action="delete_multiple" query="documentkey=6324cf362f808a1052232e5df699b656"/></record_update>]]></payload>
+        <payload_hash>1875470345</payload_hash>
+        <record_name>glide.service_portal.resize_text.hrp.enable_rem_conversion</record_name>
+        <reverted_from/>
+        <source>f7dfe2712fc8461052232e5df699b667</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-02-03 07:48:06</sys_created_on>
+        <sys_id>fb24cf362f808a1052232e5df699b659</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>18d6df060c20000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-02-03 07:48:06</sys_updated_on>
+        <type>System Property</type>
+        <update_guid>3324cf3632808a107fe330d121f24059</update_guid>
+        <update_guid_history>3324cf3632808a107fe330d121f24059:1875470345</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-02-08 22:28:28</sys_created_on>
+        <sys_db_object display_value="" name="sys_properties">sys_properties</sys_db_object>
+        <sys_id>37ac815458b04166adb0a9c9159eb0e4</sys_id>
+        <sys_metadata>6324cf362f808a1052232e5df699b656</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>glide.service_portal.resize_text.hrp.enable_rem_conversion</sys_name>
+        <sys_package display_value="Human Resource" source="x_1022175_hr">1980ab752f87f11052232e5df699b6c1</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Human Resource">1980ab752f87f11052232e5df699b6c1</sys_scope>
+        <sys_scope_delete display_value="">17665fce484249118462a12012e01369</sys_scope_delete>
+        <sys_update_name>sys_properties_6324cf362f808a1052232e5df699b656</sys_update_name>
+        <sys_update_version display_value="sys_properties_6324cf362f808a1052232e5df699b656">fb24cf362f808a1052232e5df699b659</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-02-08 22:28:28</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

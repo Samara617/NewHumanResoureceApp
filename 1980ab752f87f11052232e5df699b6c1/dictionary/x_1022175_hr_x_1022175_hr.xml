@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element audit="true" db_object_id="a59cab352fc7f11052232e5df699b683" extends="task" label="Human Resource" max_length="40" name="x_1022175_hr_x_1022175_hr" type="collection">
+        <element attributes="edge_encryption_enabled=true" choice="1" label="Close code" max_length="40" name="close_code" type="string">
+            <choice>
+                <element inactive_on_update="false" label="Duplicate ticket" sequence="0" value="duplicate ticket"/>
+                <element inactive_on_update="false" label="Information Not Available" sequence="1" value="information not available"/>
+                <element inactive_on_update="false" label="No Action Required" sequence="2" value="no action required"/>
+                <element inactive_on_update="false" label="Out of Scope" sequence="3" value="out of scope"/>
+                <element inactive_on_update="false" label="Policy Clarification Provided" sequence="4" value="policy clarification provided"/>
+                <element inactive_on_update="false" label="Resolved by Employee" sequence="5" value="resolved by employee"/>
+                <element inactive_on_update="false" label="Resolved Successfully" sequence="6" value="resolved successfully"/>
+                <element inactive_on_update="false" label="Other" sequence="7" value="other"/>
+            </choice>
+        </element>
+        <element attributes="edge_encryption_enabled=true,encode_utf8=false" label="Requested for" mandatory="true" max_length="32" name="requested_for" reference="sys_user" type="reference"/>
+        <element attributes="edge_encryption_enabled=true" label="Resolved" max_length="40" name="resolved" read_only="true" type="glide_date_time"/>
+        <element attributes="edge_encryption_enabled=true,encode_utf8=false" label="Resolved By" max_length="32" name="resolved_by" read_only="true" reference="sys_user" type="reference"/>
+        <element attributes="edge_encryption_enabled=true" choice="1" label="Seperation Type" mandatory="true" max_length="40" name="separation_type" type="string">
+            <choice>
+                <element inactive_on_update="false" label="Immediate Termination" sequence="0" value="immediate termination"/>
+                <element inactive_on_update="false" label="Termination" sequence="1" value="termination"/>
+                <element inactive_on_update="false" label="Resignation" sequence="2" value="resignation"/>
+            </choice>
+        </element>
+        <element attributes="edge_encryption_enabled=true,encode_utf8=false" choice="1" display="true" label="Source" max_length="32" name="source" read_only="true" reference="sc_cat_item" type="reference">
+            <choice/>
+        </element>
+        <element attributes="edge_encryption_enabled=true" choice="1" label="Type" mandatory="true" max_length="40" name="type" type="string">
+            <choice>
+                <element inactive_on_update="false" label="Benefits" sequence="0" value="benefits"/>
+                <element inactive_on_update="false" label="Confidential" sequence="1" value="confidential"/>
+                <element inactive_on_update="false" label="General HR" sequence="2" value="general hr"/>
+                <element inactive_on_update="false" label="Payroll" sequence="3" value="payroll"/>
+                <element inactive_on_update="false" label="Training" sequence="4" value="training"/>
+            </choice>
+        </element>
+    </element>
+</database>

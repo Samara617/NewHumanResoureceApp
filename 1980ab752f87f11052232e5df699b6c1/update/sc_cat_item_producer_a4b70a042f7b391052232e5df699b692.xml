@@ -72,14 +72,26 @@
         <sc_ic_item_staging/>
         <sc_ic_version/>
         <sc_template/>
-        <script><![CDATA[current.requested_for = producer.requested_by;
-current.type = 'General HR';
-current.contact_type = 'self-service';
-current.source = 'employee_separation';
+        <script><![CDATA[(function executeRule(current, previous /*null when async*/) {
+    
+    // Set the Type field to General HR
+    current.type = 'General HR';
+     
+    // Set the Contact type field to Self-service
+    current.contact_type = 'Self-service';
 
-var grp = '05afb3b62f13355052232e5df699b695';
+	current.assignment_group = 'e902b7052f0c821052232e5df699b6ad';
 
-current.assignment_group = grp;]]></script>
+    // Set the Source field to the catalog item submitted
+    current.source = 'a4b70a042f7b391052232e5df699b692';
+    
+    // Set Priority to Critical when Immediate Termination is selected
+	if (current.bf1221502fbb791052232e5df699b62f = 'a982e5502fbb791052232e5df699b6c3') {
+        current.priority= 1;
+ 
+    }
+})(current, previous);
+]]></script>
         <short_description>Employee_Separation</short_description>
         <show_variable_help_on_load>false</show_variable_help_on_load>
         <start_closed>false</start_closed>
@@ -88,14 +100,14 @@ current.assignment_group = grp;]]></script>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2024-01-13 04:07:03</sys_created_on>
         <sys_id>a4b70a042f7b391052232e5df699b692</sys_id>
-        <sys_mod_count>40</sys_mod_count>
+        <sys_mod_count>69</sys_mod_count>
         <sys_name>Employee Separation</sys_name>
         <sys_package display_value="Human Resource" source="x_1022175_hr">1980ab752f87f11052232e5df699b6c1</sys_package>
         <sys_policy/>
         <sys_scope display_value="Human Resource">1980ab752f87f11052232e5df699b6c1</sys_scope>
         <sys_update_name>sc_cat_item_producer_a4b70a042f7b391052232e5df699b692</sys_update_name>
-        <sys_updated_by>system</sys_updated_by>
-        <sys_updated_on>2024-01-28 23:41:11</sys_updated_on>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-02-28 22:24:40</sys_updated_on>
         <table_name>x_1022175_hr_x_1022175_hr</table_name>
         <taxonomy_topic/>
         <template/>
@@ -103,7 +115,7 @@ current.assignment_group = grp;]]></script>
         <type>item</type>
         <use_sc_layout>true</use_sc_layout>
         <vendor/>
-        <version>40</version>
+        <version>69</version>
         <view/>
         <visible_bundle>true</visible_bundle>
         <visible_guide>true</visible_guide>
